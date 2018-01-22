@@ -21,6 +21,11 @@ group :development do
   gem 'sqlite3'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'rails-controller-testing'
+end
+
 gem 'tzinfo-data'
 
 # Use Puma as the app server
