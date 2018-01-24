@@ -1,4 +1,3 @@
-require File.expand_path("../../config/environment", __FILE__)
 require_relative 'random_data'
 
   # Create Posts
