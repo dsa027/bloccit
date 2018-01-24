@@ -14,9 +14,7 @@ module RandomData
   end
 
   def self.random_sentence
-    strings = []
-    n = rand(0..@all_sentences.count-1)
-    strings << @all_sentences[n][1..-1]
+    @all_sentences[rand(0..@all_sentences.count-1)].strip
   end
 
 end
