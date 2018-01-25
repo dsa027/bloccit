@@ -24,3 +24,5 @@ production:
   database: production
   adapter: postgresql
   host: ENV['DATABASE_URL']
+  encoding: UTF-8
+  pool: 15
