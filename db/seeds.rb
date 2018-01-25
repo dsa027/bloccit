@@ -34,7 +34,17 @@ require_relative 'random_data'
     )
   end
 
+  # Create Questions
+  100.times do
+    Question.create!(
+      title: get_title,
+      body: RandomData.random_paragraph,
+      resolved: rand(0..1) == 0 ? false : true
+    )
+  end
+
   puts "Seed finished"
   puts "#{Post.count} posts created"
   puts "#{Comment.count} comments created"
   puts "#{Advertisement.count} advertisements created"
+  puts "#{Question.count} questions created"
