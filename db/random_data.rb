@@ -17,4 +17,7 @@ module RandomData
     @all_sentences[rand(0..@all_sentences.count-1)].strip
   end
 
+  def self.random_name
+    @all_sentences[rand(0..@all_sentences.count-1)].split(' ')[0..1].join(' ').strip
+  end
 end
