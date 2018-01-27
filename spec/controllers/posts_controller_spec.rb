@@ -3,7 +3,7 @@ require_relative '../../db/random_data'
 
 RSpec.describe PostsController, type: :controller do
 
-  let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
+  let(:my_topic) { Topic.create!(name: RandomData.random_name, description: RandomData.random_paragraph) }
   let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 
   describe "GET show" do
@@ -48,7 +48,6 @@ RSpec.describe PostsController, type: :controller do
     it "assigns the new post to @post" do
       post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
        expect(assigns(:post)).to eq Post.last
-      expect(assigns(:post)).to eq Post.last
     end
 
     it "redirects to the new post" do
