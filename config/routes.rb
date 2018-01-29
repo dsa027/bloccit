@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create]
+
+  post 'users/confirm' => 'users#confirm'
+  post 'users/new' => 'users#new'
+
   resources :questions
   resources :advertisements
 
