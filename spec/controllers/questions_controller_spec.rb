@@ -51,7 +51,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
   end
 
-  describe "QUESTION create" do
+  describe "GET create" do
     it "increases the number of Question by 1" do
       expect{ post :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } } }.to change(Question,:count).by(1)
     end
@@ -92,9 +92,9 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe "PUT update" do
     it "updates question with expected attributes" do
-      new_title = RandomData.random_sentence
+      new_title = RandomData.random_name
       new_body = RandomData.random_paragraph
-      new_resolved = rand(0..1) == 0 ? false : true
+      new_resolved = rand(0..1).even? ? true : false
 
       put :update, params: { id: my_question.id, question: {title: new_title, body: new_body, resolved: new_resolved } }
 

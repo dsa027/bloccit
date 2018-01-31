@@ -18,6 +18,14 @@ module RandomData
   end
 
   def self.random_name
-    @all_sentences[rand(0..@all_sentences.count-1)].split(' ')[0..1].join(' ').strip
+    random_word(2)
+  end
+
+  def self.random_word(count=1)
+    @all_sentences[rand(0..@all_sentences.count-1)].split(' ')[0..(count-1)].join(' ').strip
+  end
+
+  def self.random_email
+  "#{random_word}@#{random_word}.#{random_word}"
   end
 end
