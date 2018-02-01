@@ -3,7 +3,7 @@ require_relative '../../db/random_data'
 
 RSpec.describe QuestionsController, type: :controller do
 
-  let(:my_question) { Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: rand(0..1) == 0 ? false : true) }
+  let(:my_question) { Question.create!(title: RandomData.random_title, body: RandomData.random_paragraph, resolved: rand(0..1) == 0 ? false : true) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -53,16 +53,16 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe "GET create" do
     it "increases the number of Question by 1" do
-      expect{ post :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } } }.to change(Question,:count).by(1)
+      expect{ post :create, params: { question: { title: RandomData.random_title, body: RandomData.random_paragraph, resolved: false } } }.to change(Question,:count).by(1)
     end
 
     it "assigns the new question to @question" do
-      post :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true } }
+      post :create, params: { question: { title: RandomData.random_title, body: RandomData.random_paragraph, resolved: true } }
       expect(assigns(:question)).to eq Question.last
     end
 
     it "redirects to the new question" do
-      post :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } }
+      post :create, params: { question: { title: RandomData.random_title, body: RandomData.random_paragraph, resolved: false } }
       expect(response).to redirect_to Question.last
     end
   end
@@ -92,7 +92,7 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe "PUT update" do
     it "updates question with expected attributes" do
-      new_title = RandomData.random_name
+      new_title = RandomData.random_title
       new_body = RandomData.random_paragraph
       new_resolved = rand(0..1).even? ? true : false
 
@@ -106,7 +106,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     it "redirects to the updated question" do
-      new_title = RandomData.random_sentence
+      new_title = RandomData.random_title
       new_body = RandomData.random_paragraph
       new_resolved = rand(0..1) == 0 ? false : true
 

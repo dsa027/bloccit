@@ -18,7 +18,33 @@ module RandomData
   end
 
   def self.random_name
-    random_word(2)
+    name, count = '', 0
+    while name.length < 5 && count < 100 do
+      name = random_word(2)
+      count += 1
+    end
+
+    return name
+  end
+
+  def self.random_password
+    pwd, count = '', 0
+    while pwd.length < 6 && count < 100 do
+      pwd = random_word(2)
+      count += 1
+    end
+
+    return pwd
+  end
+
+  def self.random_title
+    title, count = '', 0
+    while title.length < 20 && count < 100 do
+      title = random_word(10)
+      count += 1
+    end
+
+    return title
   end
 
   def self.random_word(count=1)

@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative '../../db/random_data'
 
 RSpec.describe AdvertisementsController, type: :controller do
-  let(:my_ad) { Advertisement.create!(title: RandomData.random_name, copy: RandomData.random_paragraph, price: rand(1..255)) }
+  let(:my_ad) { Advertisement.create!(title: RandomData.random_title, copy: RandomData.random_paragraph, price: rand(1..255)) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -27,7 +27,7 @@ RSpec.describe AdvertisementsController, type: :controller do
 
   describe "GET #create" do
     it "increases the number of Question by 1" do
-      expect{ post :create, params: { advertisement: { title: RandomData.random_name, copy: RandomData.random_paragraph, price: 32 } } }.to change(Advertisement,:count).by(1)
+      expect{ post :create, params: { advertisement: { title: RandomData.random_title, copy: RandomData.random_paragraph, price: 32 } } }.to change(Advertisement,:count).by(1)
     end
   end
 

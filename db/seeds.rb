@@ -1,30 +1,22 @@
-require_relative 'random_data'
-
-  def get_title
-    title = RandomData.random_word(10)
-    if title[79]
-      title = title.truncate(77) + "..."
-    end
-    return title
-  end
+require_relative '../../db/random_data'
 
   5.times do
-    pwd, count = '', 0
-    while pwd.length < 6 && count < 100
-      pwd = RandomData.random_word(3)
-      count += 1
-    end
     User.create!(
       name:     RandomData.random_name,
       email:    RandomData.random_email,
-      password: pwd
+      password: RandomData.random_password
     )
   end
   users = User.all
-  user = User.first
-  user.update_attributes!(
+  admin = User.create!(
     email: 'dsa027@gmail.com',
-    password: 'password'
+    password: 'password',
+    role: 'admin'
+  )
+  member = User.create!(
+    name:     'Member User',
+    email:    'member@example.com',
+    password: 'helloworld'
   )
 
   # Create Topic
@@ -46,7 +38,7 @@ require_relative 'random_data'
     Post.create!(
       user: users.sample,
       topic: topics.sample,
-      title:  get_title,
+      title: RandomData.random_title,
       body:   RandomData.random_paragraph
     )
   end
@@ -56,7 +48,7 @@ require_relative 'random_data'
   25.times do
     SponsoredPost.create!(
       topic: topics.sample,
-      title: get_title,
+      title: RandomData.random_title,
       body: RandomData.random_paragraph,
       price: sprintf("%02.2f", rand() * 1000)
     )
@@ -73,7 +65,7 @@ require_relative 'random_data'
   # Create Questions
   50.times do
     Question.create!(
-      title: get_title,
+      title: RandomData.random_title,
       body: RandomData.random_paragraph,
       resolved: rand(0..1) == 0 ? false : true
     )
@@ -82,7 +74,7 @@ require_relative 'random_data'
   # Create Advertisements
   25.times do
     Advertisement.create!(
-      title: get_title,
+      title: RandomData.random_title,
       copy: RandomData.random_paragraph,
       price: sprintf("%02.2f", rand() * 1000)
     )
