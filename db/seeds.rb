@@ -1,5 +1,7 @@
 require_relative 'random_data'
 
+  vote_count = 0
+
   5.times do
     User.create!(
       name:     RandomData.random_name,
@@ -22,13 +24,8 @@ require_relative 'random_data'
 
   # Create Topic
   15.times do
-    name, count = '', 0
-    while name.length < 5 && count < 100
-      name = RandomData.random_name
-      count += 1
-    end
     Topic.create!(
-      name:         name,
+      name:         RandomData.random_name,
       description:  RandomData.random_paragraph
     )
     end
@@ -36,12 +33,17 @@ require_relative 'random_data'
 
   # Create Posts
   50.times do
-    Post.create!(
+    post = Post.create!(
       user: users.sample,
       topic: topics.sample,
       title: RandomData.random_title,
       body:   RandomData.random_paragraph
     )
+    post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+    rand(1..15).times {
+      post.votes.create!(value: [-1, 1].sample, user: users.sample)
+      vote_count += 1
+    }
   end
   posts = Post.all
 
@@ -86,6 +88,7 @@ require_relative 'random_data'
   puts "#{Topic.count} topics created"
   puts "#{User.count} users created"
   puts "#{Post.count} posts created"
+  puts "#{vote_count} votes cast"
   puts "#{SponsoredPost.count} sponsored posts created"
   puts "#{Comment.count} comments created"
   puts "#{Advertisement.count} advertisements created"
