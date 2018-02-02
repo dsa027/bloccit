@@ -379,8 +379,8 @@ RSpec.describe PostsController, type: :controller do
 
     describe "POST create" do
       it "returns http redirect" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_title, body: RandomData.random_paragraph } }
-        expect(response).to redirect_to(my_topic)
+        get :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_title, body: RandomData.random_paragraph } }
+        expect(response).to redirect_to(topic_path)
       end
     end
 
@@ -433,6 +433,6 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
-    
+
   end
 end

@@ -1,4 +1,4 @@
-require_relative '../../db/random_data'
+require_relative 'random_data'
 
   5.times do
     User.create!(
@@ -9,6 +9,7 @@ require_relative '../../db/random_data'
   end
   users = User.all
   admin = User.create!(
+    name: 'David Alderson',
     email: 'dsa027@gmail.com',
     password: 'password',
     role: 'admin'
@@ -57,6 +58,7 @@ require_relative '../../db/random_data'
   # Create Comments
   100.times do
     Comment.create!(
+      user: users.sample,
       post: posts.sample,
       body: RandomData.random_paragraph
     )
