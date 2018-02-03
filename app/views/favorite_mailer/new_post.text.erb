@@ -1,0 +1,10 @@
+New post: "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 12) %>
+
+Note: You are receiving this email because you created a new post on bloccit. You will also receive an email whenever someone comments on this post.
+
+ By: <%= @post.user.name %>
+
+ <%= @post.body %>
+
+ Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>

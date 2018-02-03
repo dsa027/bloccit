@@ -1,3 +1,4 @@
+<%= content_tag :div, class: 'media', id: "post-#{@post.id}" do %>
 <div>
   <%= render partial: 'votes/voting', locals: { post: @post } %>
   <h1>
@@ -39,6 +40,7 @@
     </h3>
     <% if current_user %>
       <%= render partial: 'favorites/favorite', locals: { post: @post } %>
-    <% end %>    
+    <% end %>
   </div>
 </div>
+<% end %>
