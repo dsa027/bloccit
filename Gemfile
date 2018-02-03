@@ -26,11 +26,17 @@ group :development, :test do
   gem 'shoulda'
 end
 
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
 gem 'tzinfo-data'
 
 gem 'bootstrap-sass'
 
-gem 'bcrypt'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
+# gem 'bcrypt', platforms: :ruby
+# gem 'bcrypt --platform=ruby'
+
+gem 'figaro', '1.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
