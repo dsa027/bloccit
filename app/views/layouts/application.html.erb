@@ -20,8 +20,9 @@
         <% if current_user %>
           <li class="pull-right">
             <div>
-            <%= link_to "#{current_user.name} - Sign Out", session_path(current_user), method: :delete, class: "signout-link" %>
-            <%= image_tag(avatar_url(current_user), alt: "User Avatar/Gravatar", class: 'avatar') %>
+              <%= link_to "Sign Out", session_path(current_user), method: :delete %>
+              <%= image_tag current_user.avatar_url(48) %>
+              <%= link_to current_user.name, user_path(current_user) %>
             </div>
           </li>
         <% else %>

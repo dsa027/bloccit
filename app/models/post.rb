@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   after_create :favorite_my_post
 
   default_scope { order('rank DESC') }
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
   scope :ordered_by_title, -> { order(:title) }
   scope :ordered_by_reverse_created_at, -> { order(:created_at) }
 
@@ -43,6 +44,6 @@ class Post < ApplicationRecord
 
   def favorite_my_post
     Favorite.new(user_id: user.id, post_id: self.id)
-    FavoriteMailer.new_post(current_user, self).deliver_now
+    FavoriteMailer.new_post(user, self).deliver_now
   end
 end

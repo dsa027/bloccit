@@ -24,6 +24,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'rails-controller-testing'
   gem 'shoulda'
+  gem 'factory_bot_rails', '~> 4.0'
 end
 
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
