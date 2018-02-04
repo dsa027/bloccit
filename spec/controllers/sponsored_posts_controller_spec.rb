@@ -3,7 +3,7 @@ require_relative '../../db/random_data'
 
 RSpec.describe SponsoredPostsController, type: :controller do
 
-  let(:my_topic) { Topic.create!(name: RandomData.random_name, description: RandomData.random_paragraph) }
+  let(:my_topic) { create(:topic) }
   let(:my_sponsored_post) { my_topic.sponsored_posts.create!(title: RandomData.random_title, body: RandomData.random_paragraph, price: rand(1..256)) }
 
   describe "GET show" do
