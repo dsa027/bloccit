@@ -378,10 +378,13 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe "POST create" do
-      it "returns http redirect" do
-        get :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_title, body: RandomData.random_paragraph } }
-        expect(response).to redirect_to(topic_path)
+      it "increases the number of Post by 1" do
+        expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_title, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
       end
+      # it "returns http redirect" do
+      #   get :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_title, body: RandomData.random_paragraph } }
+      #   expect(response).to redirect_to(topic_path)
+      # end
     end
 
     describe "DELETE destroy" do
