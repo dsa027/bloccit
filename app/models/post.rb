@@ -42,7 +42,7 @@ class Post < ApplicationRecord
   end
 
   def favorite_my_post
-    Favorite.new(user_id: user.id, post_id: self.id)
-    FavoriteMailer.new_post(current_user, self).deliver_now
+    Favorite.new(user_id: user.id, post_id: self.id).save
+    FavoriteMailer.new_post(User.find(self.user_id), self).deliver_now
   end
 end
