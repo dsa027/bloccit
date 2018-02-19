@@ -8,6 +8,7 @@
 </div>
 <br/>
 <div class="col-md-4">
+  <% params.permit! %>
   <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success btn-lg user-btn', form: {style: 'display:inline-block;'} %>
   <%= button_to "No", new_user_path, class: 'btn btn-default btn-lg user-btn', form: {style: 'display:inline-block;'} %>
 </div>
